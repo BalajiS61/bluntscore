@@ -4,11 +4,11 @@ from __future__ import annotations
 from datetime import datetime
 from typing import TYPE_CHECKING, List, Optional
 
-from sqlalchemy import CheckConstraint, DateTime, Float, Integer, String, Text
+from sqlalchemy import CheckConstraint, Float, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship, validates
 
 from app.db.database import Base
-from app.models.mixins import TimestampMixin
+from app.models.mixins import TimestampMixin, UTCDateTime
 from app.utils.text import slugify
 
 if TYPE_CHECKING:
@@ -31,7 +31,7 @@ class Topic(TimestampMixin, Base):
     positive_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
     neutral_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
     negative_count: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
-    last_scored_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True))
+    last_scored_at: Mapped[Optional[datetime]] = mapped_column(UTCDateTime())
 
     reviews: Mapped[List["Review"]] = relationship(
         back_populates="topic", cascade="all, delete-orphan", passive_deletes=True

@@ -7,6 +7,7 @@ from sqlalchemy.orm import Session
 from app.db.database import get_db
 from app.ingestion.adapters import ParsedBatch, RawReview, parse_csv, parse_datetime
 from app.models.enums import SourceType
+from app.schemas.common import error_responses
 from app.schemas.ingestion import (
     IngestionReportOut,
     IngestRequest,
@@ -58,7 +59,8 @@ def ingest_json(payload: IngestRequest, db: Session = Depends(get_db)) -> Ingest
     return _report_out(report)
 
 
-@router.post("/csv", response_model=IngestionReportOut, summary="Ingest reviews from a CSV upload")
+@router.post("/csv", response_model=IngestionReportOut, summary="Ingest reviews from a CSV upload",
+             responses=error_responses(400, 413))
 def ingest_csv(
     file: UploadFile = File(..., description="CSV with a header row and a 'text'/'review' column"),
     topic: str = Form(..., min_length=1, max_length=120),

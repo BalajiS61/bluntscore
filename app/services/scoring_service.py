@@ -1,4 +1,4 @@
-"""Recomputes a topic's BluntScore from its stored reviews and ratings."""
+"""Computes and caches a topic's BluntScore from its stored reviews and ratings."""
 from datetime import datetime, timezone
 from typing import Dict, Optional
 
@@ -47,6 +47,18 @@ def build_review_signals(db: Session, topic_id: int) -> list[ReviewSignal]:
     ]
 
 
+def compute_topic_breakdown(
+    db: Session,
+    topic: Topic,
+    config: Optional[ScoringConfig] = None,
+    now: Optional[datetime] = None,
+) -> ScoreBreakdown:
+    """Read-only: calculate the score from what is stored, without saving anything."""
+    signals = build_review_signals(db, topic.id)
+    ratings = db.scalars(select(UserRating.rating).where(UserRating.topic_id == topic.id)).all()
+    return compute_score(signals, ratings, config or get_scoring_config(), now)
+
+
 def recompute_topic_score(
     db: Session,
     topic: Topic,
@@ -55,10 +67,7 @@ def recompute_topic_score(
 ) -> ScoreBreakdown:
     """Analyze any new reviews, recompute the score and cache it on the topic."""
     analyze_reviews(db, topic_id=topic.id)
-
-    signals = build_review_signals(db, topic.id)
-    ratings = db.scalars(select(UserRating.rating).where(UserRating.topic_id == topic.id)).all()
-    breakdown = compute_score(signals, ratings, config or get_scoring_config(), now)
+    breakdown = compute_topic_breakdown(db, topic, config, now)
 
     topic.sentiment_score = breakdown.score
     topic.review_count = breakdown.review_count

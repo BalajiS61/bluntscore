@@ -52,3 +52,11 @@ def client(session_factory):
     with TestClient(app) as test_client:
         yield test_client
     app.dependency_overrides.clear()
+
+
+@pytest.fixture()
+def seeded_client(client):
+    """A client whose database already holds the 4-topic sample dataset."""
+    response = client.post("/api/v1/ingest/samples")
+    assert response.status_code == 200
+    return client

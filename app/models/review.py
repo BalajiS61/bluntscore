@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING, Optional
 
 from sqlalchemy import (
     CheckConstraint,
-    DateTime,
     Float,
     ForeignKey,
     Index,
@@ -18,7 +17,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship, validates
 
 from app.db.database import Base
 from app.models.enums import SentimentLabel, enum_column
-from app.models.mixins import TimestampMixin
+from app.models.mixins import TimestampMixin, UTCDateTime
 from app.utils.text import content_hash
 
 if TYPE_CHECKING:
@@ -41,13 +40,13 @@ class Review(TimestampMixin, Base):
     content_hash: Mapped[str] = mapped_column(String(64), nullable=False)
     author: Mapped[Optional[str]] = mapped_column(String(120))
     external_id: Mapped[Optional[str]] = mapped_column(String(120))
-    published_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True))
+    published_at: Mapped[Optional[datetime]] = mapped_column(UTCDateTime())
 
     # Filled in by the NLP engine (Step 3)
     sentiment_label: Mapped[Optional[SentimentLabel]] = mapped_column(enum_column(SentimentLabel))
     sentiment_compound: Mapped[Optional[float]] = mapped_column(Float)    # -1.0 .. 1.0
     sentiment_confidence: Mapped[Optional[float]] = mapped_column(Float)  #  0.0 .. 1.0
-    analyzed_at: Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True))
+    analyzed_at: Mapped[Optional[datetime]] = mapped_column(UTCDateTime())
 
     topic: Mapped["Topic"] = relationship(back_populates="reviews")
     source: Mapped["Source"] = relationship(back_populates="reviews")
