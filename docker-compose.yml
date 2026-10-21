@@ -1,0 +1,16 @@
+services:
+  api:
+    build: .
+    container_name: bluntscore
+    ports:
+      - "8000:8000"
+    volumes:
+      - bluntscore-data:/data
+    environment:
+      SCORING_HALF_LIFE_DAYS: "180"
+      SCORING_PRIOR_STRENGTH: "5"
+      SCORING_RATING_WEIGHT: "0.3"
+    restart: unless-stopped
+
+volumes:
+  bluntscore-data:
