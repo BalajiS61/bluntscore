@@ -1,0 +1,65 @@
+{
+  "sources": [
+    {"name": "amazon", "source_type": "ecommerce", "weight": 1.0, "description": "Verified-purchase product reviews"},
+    {"name": "reddit", "source_type": "forum", "weight": 0.8, "description": "Community discussion threads"},
+    {"name": "tech-news", "source_type": "news", "weight": 1.5, "description": "Professional editorial reviews"}
+  ],
+  "topics": [
+    {
+      "name": "Pixel 9",
+      "category": "smartphones",
+      "description": "Flagship Android smartphone",
+      "reviews": [
+        {"source": "amazon", "author": "arjun_k", "days_ago": 2, "text": "Absolutely love it, the camera is stunning in low light!"},
+        {"source": "amazon", "author": "meera", "days_ago": 9, "text": "Battery easily lasts a day and a half. Fantastic phone."},
+        {"source": "amazon", "author": "dev_r", "days_ago": 21, "text": "Gets a bit warm while gaming, otherwise great."},
+        {"source": "reddit", "author": "u/pixelfan", "days_ago": 4, "text": "Smooth, snappy and reliable. Best phone I have owned."},
+        {"source": "reddit", "author": "u/techskeptic", "days_ago": 12, "text": "A bit pricey but honestly worth it for the software updates."},
+        {"source": "reddit", "author": "u/nightowl", "days_ago": 30, "text": "Fingerprint sensor is slow sometimes, which is annoying."},
+        {"source": "tech-news", "author": "Staff Review", "days_ago": 15, "text": "The display is bright, the build feels durable and the camera leads its class."}
+      ],
+      "ratings": [5, 5, 4, 4, 5, 3, 5]
+    },
+    {
+      "name": "Budget Earbuds X",
+      "category": "audio",
+      "description": "Low-cost true wireless earbuds",
+      "reviews": [
+        {"source": "amazon", "author": "priya", "days_ago": 3, "text": "Sound is okay for the price."},
+        {"source": "amazon", "author": "rahul", "days_ago": 6, "text": "Right earbud died after a week. Defective."},
+        {"source": "amazon", "author": "kiran", "days_ago": 18, "text": "Comfortable and the bass is decent."},
+        {"source": "reddit", "author": "u/audiophile99", "days_ago": 8, "text": "Laggy bluetooth and a flimsy case."},
+        {"source": "reddit", "author": "u/budgetbuyer", "days_ago": 25, "text": "Good enough for the gym, I am happy with them."},
+        {"source": "tech-news", "author": "Staff Review", "days_ago": 40, "text": "Mediocre battery life and average call quality, but hard to beat at this price."}
+      ],
+      "ratings": [3, 2, 4, 3, 2]
+    },
+    {
+      "name": "CrashyApp 2.0",
+      "category": "software",
+      "description": "Productivity app after its major redesign",
+      "reviews": [
+        {"source": "reddit", "author": "u/frustrated", "days_ago": 1, "text": "Crashes every time I open it. Total garbage."},
+        {"source": "reddit", "author": "u/oldtimer", "days_ago": 2, "text": "Buggy mess. I want a refund."},
+        {"source": "amazon", "author": "sanjay", "days_ago": 3, "text": "Terrible update, everything is slower and harder to find."},
+        {"source": "amazon", "author": "lakshmi", "days_ago": 5, "text": "Sync stopped working and I lost my notes. Awful."},
+        {"source": "tech-news", "author": "Staff Review", "days_ago": 6, "text": "Version 1 was great, but 2.0 is a disappointment."},
+        {"source": "amazon", "author": "vivek", "days_ago": 700, "text": "Loved this app, it organised my whole week."}
+      ],
+      "ratings": [1, 1, 2, 1, 2]
+    },
+    {
+      "name": "QuickBite Delivery",
+      "category": "food delivery",
+      "description": "City food delivery service",
+      "reviews": [
+        {"source": "amazon", "author": "nisha", "days_ago": 1, "text": "Food arrived hot and on time. Great service!"},
+        {"source": "reddit", "author": "u/hungry", "days_ago": 3, "text": "Delivery took 70 minutes and the order was wrong. Not happy."},
+        {"source": "reddit", "author": "u/foodie", "days_ago": 7, "text": "Love the discounts and the tracking is accurate."},
+        {"source": "amazon", "author": "arun", "days_ago": 10, "text": "Support was helpful when my order was missing an item."},
+        {"source": "tech-news", "author": "Staff Review", "days_ago": 20, "text": "Reliable and affordable, with a clean and intuitive app."}
+      ],
+      "ratings": [4, 5, 2, 4, 4, 3]
+    }
+  ]
+}
