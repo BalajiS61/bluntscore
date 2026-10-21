@@ -19,6 +19,9 @@ REVIEW_LEXICON: dict[str, float] = {
     "crashing": -2.0,
     "rip-off": -2.5,
     "ripoff": -2.5,
+    "mediocre": -1.5,
+    "underwhelming": -1.6,
+    "subpar": -1.6,
     # positive product/service terms
     "durable": 1.8,
     "sturdy": 1.5,
